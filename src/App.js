@@ -4,7 +4,12 @@ import Login from './components/Login';
 function App() {
   return (
     <div className="App">
-      <Login></Login>
+      <div className='side-container'>
+        <h2>Sample Login Page</h2>
+      </div>
+      <div className='login-container'>
+        <Login></Login>
+      </div>
     </div>
   );
 }
