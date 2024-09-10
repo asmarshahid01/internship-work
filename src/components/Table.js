@@ -1,5 +1,6 @@
 import React from 'react'
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
+import './css/Table.css'
 
 export default function Table({ users, columns }) {
     const [data, _setData] = React.useState(() => [...users])
@@ -41,7 +42,7 @@ export default function Table({ users, columns }) {
               {table.getRowModel().rows.map((row, index) => (
                 <tr key={row.id}>
                   {row.getVisibleCells().map(cell => (
-                    <td key={cell.id}>
+                    <td key={cell.id} className='table-entry'>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}
@@ -49,22 +50,6 @@ export default function Table({ users, columns }) {
                 </tr>
               ))}
             </tbody>
-            <tfoot>
-              {table.getFooterGroups().map(footerGroup => (
-                <tr key={footerGroup.id}>
-                  {footerGroup.headers.map(header => (
-                    <th key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.footer,
-                            header.getContext()
-                          )}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </tfoot>
           </table>
   )
 }

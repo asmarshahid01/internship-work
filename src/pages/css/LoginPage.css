@@ -13,7 +13,7 @@
     width: 50%;
     top: 0;
     left: 0;
-    background: #1a1a1a;
+    background: #1A1A1A;
 }
 
 .side-container h2 {
@@ -28,9 +28,10 @@
     margin: 0;
     padding: 0;
     user-select: none;
+
 }
 
-.side-container span {
+span {
     color: #fbfbfb;
 }
 
