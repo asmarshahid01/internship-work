@@ -1,0 +1,36 @@
+table {
+    background: #fdfdfd;
+    padding: 2vw;
+    border-radius: 1vw;
+    box-shadow: 0 0.5vw 2vw #efefef;
+}
+
+table thead th {
+    color: #3b3b3b;
+    padding-bottom: 1vw;
+    text-align: left;
+    padding-left: 1vw;
+}
+
+table tbody tr td {
+    padding: 0.2vw 1vw;
+}
+
+table tbody tr td button {
+    height: 2vw;
+    width: 4vw;
+    background: rgb(255, 233, 233);
+    border-radius: 0.2vw;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.table-entry {
+    transition: 0.3s all ease;
+}
+
+.table-entry:hover {
+    background: #f3f3f3;
+    transition: 0.3s all ease;
+}
