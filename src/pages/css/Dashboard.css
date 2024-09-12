@@ -13,7 +13,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    top: 0;
+    top: 3vw;
     left: 50%;
     transform: translate(-50%, 0);
 }
@@ -24,4 +24,46 @@
     color: #dcdcdc;
     padding: 0;
     outline: none;
+}
+
+#pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    color: #767676;
+    font-weight: 0.7vw;
+}
+
+#prev-btn, #next-btn {
+    color: #3b3b3b;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#search-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    background: #fdfdfd;
+}
+
+#add-btn {
+    height: 2.4vw;
+    width: 5vw;
+    background: #fdfdfd;
+    box-shadow: 0 0.5vw 2vw #efefef;
+    margin-top: -1vw;
+    border-radius: 0.2vw;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3vw;
+}
+
+#add-btn svg {
+    height: 0.8vw;
+    width: 0.8vw;
+    background: #fdfdfd;
 }

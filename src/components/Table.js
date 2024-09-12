@@ -2,8 +2,7 @@ import React from 'react'
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table'
 import './css/Table.css'
 
-export default function Table({ users, columns }) {
-    const [data, _setData] = React.useState(() => [...users])
+export default function Table({ data, _setData, columns }) {
     const rerender = React.useReducer(() => ({}), {})[1]
 
     const table = useReactTable({
