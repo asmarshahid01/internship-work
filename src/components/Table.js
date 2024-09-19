@@ -3,6 +3,7 @@ import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-tabl
 import './css/Table.css'
 
 export default function Table({ data, _setData, columns }) {
+    
     const rerender = React.useReducer(() => ({}), {})[1]
 
     const table = useReactTable({

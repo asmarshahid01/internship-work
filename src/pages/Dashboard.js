@@ -1,19 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Table from '../components/Table.js'
-import { faker } from '@faker-js/faker'
+import {faker} from '@faker-js/faker'
 import { createColumnHelper } from '@tanstack/react-table'
 import './css/Dashboard.css'
+import SearchBar from '../components/SearchBar.js'
 import Navbar from '../components/Navbar.js'
-import Sidebar from '../components/Sidebar.js'
-import Searchbar from '../components/Searchbar.js'
-import AddEntry from '../components/AddEntry.js'
-
-const users = [...Array(10)].map(()=>({
-    id: faker.string.uuid(),
-    username: faker.internet.userName(),
-    email: faker.internet.email(),
-    password: faker.internet.password()
-}))
+import SideBar from '../components/SideBar.js'
 
 const columnHelper = createColumnHelper()
 
@@ -37,51 +29,77 @@ const columns = [
 ]
 
 export default function Dashboard () {
-  const [searchTxt, setSearchTxt] = useState('');
-  const [data, _setData] = React.useState(() => [...users]);
-  const range = 5;
-  const [startVal, setStartVal] = useState(0);
-  const [showSideabr, setShowSidebar] = useState(false);
-  const [showAddEntry, setShowAddEntry] = useState(false);
 
-  useEffect(()=>{
+  const [users, setUsers] = useState([...Array(10)].map(()=>({
+    id: faker.string.uuid(),
+    username: faker.internet.userName(),
+    email: faker.internet.email(),
+    password: faker.internet.password()
+})));
+
+const [searchTxt, setSearchTxt] = useState('');
+const [data, _setData] = React.useState(() => [...users]);
+const range = 5;
+const [startVal, setStartVal] = useState(0);
+const [showSidebar, setShowSidebar] = useState(false);
+const [addEntryState, setAddEntryState] = useState({});
+
+  useEffect(() => {
     const handleUsers = () => {
-      const filtered = users.filter((user) => 
-      user['username'].toLowerCase().includes(searchTxt.toLowerCase()) ||
-      user['email'].toLowerCase().includes(searchTxt.toLowerCase()) ||
-      user['password'].toLowerCase().includes(searchTxt.toLowerCase()));
-
+      const filtered = users.filter((user) =>
+        user['username'].toLowerCase().includes(searchTxt.toLowerCase()) ||
+        user['email'].toLowerCase().includes(searchTxt.toLowerCase()) ||
+        user['password'].toLowerCase().includes(searchTxt.toLowerCase())
+      );
       _setData(filtered.slice(startVal, startVal+range));
     };
 
     handleUsers();
-  },[searchTxt]);
+  }, [searchTxt]);
 
-  useEffect(()=>{
-    const currentUsers = users.slice(startVal, startVal+range);
+  useEffect(() => {
+    const currentUsers = users.slice(startVal, startVal+range)
     _setData(currentUsers);
-  },[startVal]);
+  }, [startVal]);
+
+  const handleAddEntryChange = (e) => {
+    setAddEntryState({...addEntryState, [e.target.name]: e.target.value})
+  }
+
+  const handleAddEntry = () => {
+    const new_entry = {
+      username: addEntryState.uname,
+      email: addEntryState.email,
+      password: addEntryState.pword
+    };
+    setUsers([new_entry, ...users]);
+    const currentUsers = users.slice(startVal, startVal+range)
+    _setData(currentUsers);
+  }
+
 
 return (
         <div id='dashboard'>
-          <Navbar showSideabr={showSideabr} setShowSidebar={setShowSidebar}></Navbar>
-          {showSideabr && <Sidebar></Sidebar>}
+            <Navbar showSidebar={showSidebar} setShowSidebar={setShowSidebar}></Navbar>
+            {showSidebar && <SideBar></SideBar>}
             <div id='table-container'>
                 <h1 id='dashboard-heading'>Dashboard.</h1>
                 <div id='search-container'>
-                  <Searchbar searchTxt={searchTxt} setSearchTxt={setSearchTxt}></Searchbar>
-                  <div id='add-btn' onClick={()=>setShowAddEntry(true)}>Add <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'>
-                    <path d='M11 11V5H13V11H19V13H13V19H11V13H5V11H11Z'></path></svg>
-                  </div>
+                    <SearchBar searchTxt={searchTxt} setSearchTxt={setSearchTxt}></SearchBar>
+                </div>
+                <div id='add-entry-container'>
+                  <input id='add-entry-uname' type='text' placeholder='username' name='uname' value={addEntryState.uname} onChange={handleAddEntryChange} required></input>
+                  <input id='add-entry-email' type='email' placeholder='email' name='email' value={addEntryState.email} onChange={handleAddEntryChange} required></input>
+                  <input id='add-entry-pass' type='text' placeholder='password' name='pword' value={addEntryState.pword} onChange={handleAddEntryChange} required></input>
+                  <button id='add-entry-btn' onClick={handleAddEntry}>Add</button>
                 </div>
                 <Table data={data} _setData={_setData} columns={columns}></Table>
                 <div id='pagination-container'>
-                  <p id='prev-btn' onClick={()=>startVal>0 && setStartVal(startVal-range)}>Prev</p>
-                  <p>Showing {startVal+1}-{startVal+range < data.length ? startVal+range : data.length}/{users.length}</p>
-                  <p id='next-btn' onClick={()=>startVal+range<users.length && setStartVal(startVal+range)}>Next</p>
+                    <p id='prev-btn' onClick={()=>startVal>0 && setStartVal(startVal-range)}>Prev</p>
+                    <p>Showing {startVal + 1}-{startVal + range}/{users.length}</p>
+                    <p id='next-btn' onClick={()=>startVal+range<users.length && setStartVal(startVal+range)}>Next</p>
                 </div>
             </div>
-            {showAddEntry && <AddEntry setShowAddEntry={setShowAddEntry}></AddEntry>}
         </div>
       )
 }
