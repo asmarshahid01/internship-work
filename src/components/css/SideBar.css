@@ -1,0 +1,29 @@
+#sidebar {
+    height: 100vh;
+    width: 14vw;
+    background: #fdfdfd;
+    box-shadow: 0.5vw 0 2vw #efefef;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+}
+
+#sidebar ul li {
+    font-size: 0.8vw;
+    font-weight: bold;
+    background: rgb(243, 243, 243);
+    padding: 1vw 0;
+    cursor: pointer;
+}
+
+#logout-btn {
+    cursor: pointer;
+}

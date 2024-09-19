@@ -1,0 +1,19 @@
+#navbar {
+    position: absolute;
+    width: 100vw;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+}
+
+#sidebar-menu {
+    height: 1vw;
+    width: 1vw;
+    cursor: pointer;
+    margin-left: 2vw;
+}
+
+#title {
+    margin-left: 2vw;
+    user-select: none;
+}

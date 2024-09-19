@@ -1,0 +1,55 @@
+#add-entry-container {
+    height: 20vw;
+    width: 60vw;
+    background: rgba(0, 0, 0, 0.2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0.5vw;
+    backdrop-filter: blur(0.5vw);
+}
+
+#add-entry-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#add-entry-input-container input {
+    outline: none;
+    border: none;
+    height: 2vw;
+    width: 20vw;
+    padding-left: 1vw;
+    border-radius: 0.3vw;
+}
+
+#add-entry-btn-container {
+    display: flex;
+    gap: 1vw;
+    position: absolute;
+    bottom: 1vw;
+    right: 1.5vw;
+}
+
+#add-entry-btn-container button {
+    border: none;
+    outline: none;
+    height: 1.5vw;
+    width: 5vw;
+    cursor: pointer;
+    border-radius: 0.2vw;
+}
+
+#add-entry-cancel-btn {
+    background: #ffd2d2;
+}
+
+#add-entry-add-btn {
+    background: #ade0af;
+}

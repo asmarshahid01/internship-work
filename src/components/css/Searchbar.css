@@ -1,0 +1,25 @@
+#search-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2vw 1vw;
+    background: #fdfdfd;
+    border-radius: 0.2vw;
+    margin-bottom: 1vw;
+    box-shadow: 0 0.5vw 2vw #efefef;
+}
+
+#search-bar-container svg {
+    height: 1vw;
+    width: 1vw;
+    color: #9b9b9b;
+}
+
+#search-bar {
+    height: 2vw;
+    width: 30vw;
+    outline: none;
+    border: none;
+    font-size: 1vw;
+    background: #fdfdfd;
+}
